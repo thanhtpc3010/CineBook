@@ -1,0 +1,8 @@
+# Repository này chỉ chứa source code frontend, backend và hướng dẫn cài đặt.
+/*
+!/.gitignore
+!/README.md
+!/CineBookApp/
+!/CineBookApp/**
+!/CineBookService/
+!/CineBookService/**

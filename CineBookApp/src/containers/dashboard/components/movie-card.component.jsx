@@ -1,0 +1,6 @@
+import { movieArtwork, releaseLabel } from '../../../core/services/movie-schedule'
+import Icon from '../../../components/Icon'
+
+export default function MovieCard({ movie, upcoming, genres, onSelect }) {
+  return <article className="showcase-movie"><button className="movie-poster" onClick={() => onSelect(movie)} aria-label={`Chi tiết ${movie.title}`}><img src={movieArtwork(movie)} alt={`Minh họa phim ${movie.title}`} loading="lazy" onError={event => { event.currentTarget.onerror = null; event.currentTarget.src = '/art/summer.svg' }} /><span className="poster-tag">{upcoming ? releaseLabel(movie.releasedate) : 'ĐANG CHIẾU'}</span><span className="poster-title" aria-hidden="true"><small>CINEBOOK SELECTION</small>{movie.title}</span><span className="poster-open"><Icon name="arrow" size={20} /></span></button><div className="movie-card-meta">{movie.genreids?.map(id => genres.find(genre => genre.genreid === id)?.genrename).filter(Boolean).slice(0, 2).join(' · ') || 'Điện ảnh'}<span>{movie.durationminutes}′</span></div><button className="movie-title-button" onClick={() => onSelect(movie)}>{movie.title}</button><div className="movie-card-bottom"><span>{upcoming ? 'Khởi chiếu' : 'Tại rạp từ'} {releaseLabel(movie.releasedate)}</span><button onClick={() => onSelect(movie)} aria-label={`Xem ${movie.title}`}><Icon name="arrow" size={16} /></button></div></article>
+}
